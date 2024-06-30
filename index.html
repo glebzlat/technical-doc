@@ -1,0 +1,545 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Lua Documentation</title>
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>Lua Documentation</header>
+      <div class="navbar-content">
+        <ul>
+          <li><a href="#Introduction" class="nav-link">Introduction</a></li>
+          <li>
+            <a href="#Values_and_Types" class="nav-link">Values and Types</a>
+          </li>
+          <li><a href="#Variables" class="nav-link">Variables</a></li>
+          <li><a href="#Comments" class="nav-link">Comments</a></li>
+          <li>
+            <a href="#If-else_statement" class="nav-link">If-else statement</a>
+          </li>
+          <li><a href="#For_statement" class="nav-link">For statement</a></li>
+          <li><a href="#Functions" class="nav-link">Functions</a></li>
+          <li><a href="#Tables" class="nav-link">Tables</a></li>
+          <li><a href="#Reference" class="nav-link">Reference</a></li>
+        </ul>
+        <div class="navbar-footer">
+          <div>2024 Gleb Zlatanov.</div>
+          <div>freeCodeCamp certification project.</div>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main-doc">
+      <section id="Introduction" class="main-section">
+        <a href="#Introduction" class="h-anchor"
+          ><header class="main-header">Introduction</header></a
+        >
+        <article>
+          <p>
+            Lua is a lightweight dynamically typed scripting language. It
+            supports multiple programming paradigms: procedural,
+            object-oriented, functinal, data-driven programming and data
+            description
+          </p>
+          <p>
+            Lua is implemented as a C library, which makes it easily embeddable
+            into the programs that need a scripting language. The Lua
+            distribution includes an interpreter called <code>lua</code>, which
+            also has interactive mode. Lua is intended to be used both as an
+            embeddable and standalone scripting language.
+          </p>
+        </article>
+      </section>
+
+      <section id="Values_and_Types" class="main-section">
+        <a href="#Values_and_Types" class="h-anchor"
+          ><header class="main-header">Values and Types</header></a
+        >
+        <article>
+          <p>
+            Lua variables have no types, and there is no type definitions in the
+            language. Types are carried along with the values.
+          </p>
+          <p>
+            There are eight basic types in Lua: <code>nil</code>,
+            <code>boolean</code>, <code>number</code>, <code>string</code>,
+            <code>function</code>, <code>userdata</code>,
+            <code>thread</code> and <code>table</code>.
+          </p>
+          <ul>
+            <li>
+              <code>nil</code>. Has only one single value, <code>nil</code>,
+              whose main property is to be different from any other value.
+            </li>
+            <li>
+              <code>boolean</code>. Has two values, <code>false</code> and
+              <code>true</code>.
+            </li>
+            <li>
+              <code>number</code>. Represents both integer and real numbers.
+            </li>
+            <li>
+              <code>string</code>. Represents immutable sequences of bytes.
+            </li>
+            <li>
+              <code>function</code>. lua can call functions written in lua and
+              written in c.
+            </li>
+            <li>
+              <code>userdata</code>. Allows arbitrary C data to be stored in Lua
+              variables.
+            </li>
+            <li>
+              <code>thread</code>. Used to represent independent threads of
+              execution.
+            </li>
+            <li>
+              <code>table</code>. Implements associative arrays that can have as
+              indices any Lua value except nil and NaN (Not a Number).
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="Variables" class="main-section">
+        <a href="#Variables" class="h-anchor"
+          ><header class="main-header">Variables</header></a
+        >
+        <article>
+          <p>
+            Variables are places that store values. There are three kinds of
+            variables in Lua: global variables, local variables, and table
+            fields.
+          </p>
+          <p>
+            Local variable is created using the <code>local</code> keyword,
+            followed by the variable name:
+          </p>
+          <div class="code-container">
+            <pre><code>
+local my_var = 1
+</code></pre>
+          </div>
+          <p>
+            Local variables are accessible in a scope where they were defined,
+            and also can be accessed by its inner scopes.
+          </p>
+          <p>
+            Global variables on the other hand are visible to the whole program.
+          </p>
+          <p>
+            Variable can be left uninitialized, in which case it holds the
+            <code>nil</code>
+            value:
+          </p>
+          <div class="code-container">
+            <pre><code>
+MyVar
+print(MyVar)   -- nil
+local my_var
+print(my_var)  -- nil
+</code></pre>
+          </div>
+        </article>
+      </section>
+
+      <section id="Comments" class="main-section">
+        <a href="#Comments" class="h-anchor"
+          ><header class="main-header">Comments</header></a
+        >
+        <article>
+          <p>
+            You probably have mentioned comments in previous section. Lua has
+            two types of comments: short, which resides on one line, and long.
+          </p>
+          <p>Short comments start with double hyphen:</p>
+          <div class="code-container">
+            <pre><code>
+-- all that after the double hyphen until the end of a line is comment
+</code></pre>
+          </div>
+          <p>
+            Long comments also start with double hyphen, immediately followed by
+            two opening square brackets (which must have closing brackets):
+          </p>
+          <div class="code-container">
+            <pre><code>
+--[[ multiline comment
+can take up
+several lines
+and it must have its closing part ]]
+</code></pre>
+          </div>
+        </article>
+      </section>
+
+      <section id="If-else_statement" class="main-section">
+        <a href="#If-else_statement" class="h-anchor"
+          ><header class="main-header">If-else statement</header></a
+        >
+        <article>
+          <p>
+            Use the <code>if</code> statement to execute statements
+            conditionally. Use the optional <code>else</code> clause to execute
+            statements if the condition is false.
+          </p>
+          <div class="code-container">
+            <pre><code>
+if condition then
+  statements
+else
+  else_statements
+end
+</code></pre>
+          </div>
+          <p>
+            If there is a need to perform different branches of statements,
+            <code>elseif</code> clause can be used:
+          </p>
+          <div class="code-container">
+            <pre><code>
+if condition_1 then
+  statements_1
+elseif condition_2 then
+  statements_2
+else:
+  else_statements
+end
+</code></pre>
+          </div>
+          <p>
+            Condition made false only by <code>false</code> and
+            <code>nil</code> values; other values make condition true.
+          </p>
+        </article>
+      </section>
+
+      <section id="For_statement" class="main-section">
+        <a href="#For_statement" class="h-anchor"
+          ><header class="main-header">For statement</header></a
+        >
+        <article>
+          <p>The for statement has two forms: numerical and generic.</p>
+          <p>
+            The numerical for loop. Repeats a block of code while a control
+            variable goes through an arithmetic progression:
+          </p>
+          <div class="code-container">
+            <pre><code>
+for name = initial, limit, step do
+  code
+end
+</code></pre>
+          </div>
+          <p>
+            For loop defines a new local variable with the given identifier,
+            evaluates <code>initial</code>, <code>limit</code> and
+            <code>step</code> expressions and repeats the code, incrementing the
+            loop variable by the <code>step</code> value until it does not
+            greater or equal to <code>limit</code>.
+          </p>
+          <p><code>step</code> may be omitted, in this case its value is 1:</p>
+          <div class="code-container">
+            <pre><code>
+for name = initial, limit do
+  code
+end
+</code></pre>
+          </div>
+          <p>
+            The generic for loop. Works over iterator functions. Calls iterator
+            function on each iteration to produce a new value, stopping when
+            this value is <code>nil</code>:
+          </p>
+          <div class="code-container">
+            <pre><code>
+for name in iterator do
+  code
+end
+</code></pre>
+          </div>
+          <p>
+            Note that the number of variables (and so the number of iterators)
+            may be greater than one. In this case they are separated by comma:
+          </p>
+          <div class="code-container">
+            <pre><code>
+for name_1, name_2, ... in iterator_1, iterator_2, ... do
+  code
+end
+</code></pre>
+          </div>
+        </article>
+      </section>
+
+      <section id="Functions" class="main-section">
+        <a href="#Functions" class="h-anchor"
+          ><header class="main-header">Functions</header></a
+        >
+        <article>
+          <p>Function definition syntax is:</p>
+          <div class="code-container">
+            <pre><code>
+function name(parameters)
+  body
+end
+</code></pre>
+          </div>
+          <p>
+            This creates a variable with the given name of type
+            <code>function</code>. This is a syntastic sugar to the following
+            function definition:
+          </p>
+          <div class="code-container">
+            <pre><code>
+name = function(parameters)
+  body
+end
+</code></pre>
+          </div>
+          <p>
+            As functions are variables, they can also be local, in which case
+            the
+            <code>function</code> keyword is prepended by the keyword
+            <code>local</code>. This translates to
+          </p>
+          <div class="code-container">
+            <pre><code>
+local name
+name = function(parameters)
+  body
+end
+</code></pre>
+          </div>
+          <p>
+            <code>parameters</code> is a list of names, separated by comma. Each
+            names are local to the function scope.
+          </p>
+          <p>
+            Each function in Lua returns value, even if it has no explicit
+            <code>return</code> statement, or has the
+            <code>return</code> statement without the value. In this case,
+            function returns <code>nil</code>.
+          </p>
+          <p>
+            In Lua, function call has multiple forms. The most familiar function
+            call form is:
+          </p>
+          <div class="code-container">
+            <pre><code>
+function_name(args)
+</code></pre>
+          </div>
+          <p>
+            Lua allows to omit parentheses if the function call has only one
+            argument, which is a string literal:
+          </p>
+          <div class="code-container">
+            <pre><code>
+function_name string_literal
+</code></pre>
+          </div>
+          <p>
+            Lua mimics keyword arguments by passing tables as an argument to the
+            function call:
+          </p>
+          <div class="code-container">
+            <pre><code>
+function_name {keywords}
+</code></pre>
+          </div>
+          <p>For example:</p>
+          <div class="code-container">
+            <pre><code>
+my_function { param_1 = 42, str = "Hello" }
+</code></pre>
+          </div>
+          <p>
+            Finally, Lua has the function call form that allows to emulate
+            methods:
+          </p>
+          <div class="code-container">
+            <pre><code>
+object:method_name args
+</code></pre>
+          </div>
+          <p>
+            Here <code>args</code> denote one of the argument passing forms
+            given below.
+          </p>
+        </article>
+      </section>
+
+      <section id="Tables" class="main-section">
+        <a href="#Tables" class="h-anchor"
+          ><header class="main-header">Tables</header></a
+        >
+        <article>
+          <p>
+            Tables is one of the most interesting parts of Lua language. They
+            implements both arrays and key-value mappings. Also they are used to
+            implement classes. Entries in tables are called fields and separated
+            either by comma or by semicolon.
+          </p>
+          <p>Fields have three different forms:</p>
+          <div class="code-container">
+            <pre><code>
+my_table = {
+  field_1 = "abc",
+  ["field_2"] = "def",
+  "ghi"
+}
+</code></pre>
+          </div>
+          <p>
+            The original form is <code>["name"] = value</code>. Fields of the form
+            `name = value` are equivalent to the original form. And fields of
+            the form <code>value</code> are equivalent to
+            <code>[i] = value</code>, where <code>i</code> are consecutive
+            integers starting with 1; fields of other format do not affect
+            <code>i</code>
+            counting.
+          </p>
+          <p>
+            Worth to mention it one more time: indexes in the table start with
+            1, not with 0 as in other programming languages.
+          </p>
+        </article>
+      </section>
+
+      <section id="Reference" class="main-section">
+        <a href="#Reference" class="h-anchor"
+          ><header class="main-header">Reference</header></a
+        >
+        <article>
+          <p>
+            The documentation is taken from
+            <a href="https://www.lua.org/manual/5.4/manual.html" target="_blank"
+              >Lua Reference Manual</a
+            >.
+          </p>
+        </article>
+      </section>
+    </main>
+    <button class="scroll-back-btn">
+      <i class="fa-solid fa-angle-up"></i>
+    </button>
+
+    <script type="text/javascript">
+      /* Copy code button */
+
+      // Add copy buttons dynamically, because I am too lazy to add them
+      // to each code container.
+      const codeContainers = document.querySelectorAll(".code-container");
+      codeContainers.forEach((el) => {
+        let btn = document.createElement("button");
+        btn.classList.add("copy-btn");
+        btn.setAttribute("title", "Copy to clipboard");
+
+        let faItalic = document.createElement("i");
+        faItalic.classList.add("fa-regular");
+        faItalic.classList.add("fa-copy");
+
+        btn.appendChild(faItalic);
+        el.appendChild(btn);
+      });
+
+      const copyButtons = document.querySelectorAll(".copy-btn");
+      copyButtons.forEach((btn) => {
+        btn.addEventListener("click", copyCode);
+      });
+
+      async function copyCode(event) {
+        // A little crutch needed to ensure the proper tree traversal
+        // starting point. Sometimes event.target is <i>, sometimes
+        // <button>.
+        let clickedBtn;
+        if (event.target.nodeName === "I") {
+          clickedBtn = event.target.parentElement;
+        } else {
+          clickedBtn = event.target;
+        }
+
+        const parent = clickedBtn.parentElement;
+        const preEl = parent.getElementsByTagName("pre")[0];
+        const codeEl = preEl.firstChild;
+        const text = codeEl.firstChild;
+
+        try {
+          await navigator.clipboard.writeText(text.data.trim());
+
+          clickedBtn.classList.add("copy-btn-active");
+          setTimeout(() => {
+            clickedBtn.classList.remove("copy-btn-active");
+          }, 1000);
+        } catch (e) {
+          console.log("Failed to copy: ", e);
+        }
+      }
+
+      /* Scroll back to page top button */
+
+      const scrollUpBtn = document.querySelector(".scroll-back-btn");
+
+      function showScrollUpBtn() {
+        if (
+          document.body.scrollTop > 100 ||
+          document.documentElement.scrollTop > 100
+        ) {
+          scrollUpBtn.style.display = "block";
+        } else {
+          scrollUpBtn.style.display = "none";
+        }
+      }
+
+      function scrollTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+
+      scrollUpBtn.onclick = scrollTop;
+
+      /* Automatically update URL when scrolled to an anchor */
+
+      const anchors = document.querySelectorAll(".h-anchor");
+      let currentHref = "";
+
+      function updateURL() {
+        for (let i = 0; i < anchors.length; i++) {
+          let anchor = anchors[i];
+          let rect = anchor.getBoundingClientRect().y;
+          let href = anchor.getAttribute("href");
+
+          if (rect < -200 || rect > 400) continue;
+
+          if (rect < -100 || rect > 100) continue;
+
+          if (href === currentHref) return;
+
+          setURL(href);
+        }
+      }
+
+      function setURL(href) {
+        window.history.replaceState({}, "", href);
+        currentHref = href;
+        // console.log(`href: ${href}; url: ${window.location.href}`);
+      }
+
+      window.onscroll = function () {
+        showScrollUpBtn();
+        updateURL();
+      };
+    </script>
+  </body>
+</html>
